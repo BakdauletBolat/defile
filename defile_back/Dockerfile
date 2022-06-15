@@ -1,5 +1,18 @@
+ARG NODE_ENV
+
+#Build stage
+FROM node:16-alpine3.13 AS building-stage
+USER root
+RUN mkdir /app
+WORKDIR /app
+COPY package*.json ./
+RUN yarn install
+COPY ./defile_front .
+RUN yarn build
+
+
 # pull official base image
-FROM python:3.9.6-alpine
+FROM python:3.9.6-alpine as web_app
 
 # set work directory
 WORKDIR /usr/src/app
@@ -19,3 +32,10 @@ RUN pip install -r req.txt
 
 # copy project
 COPY . .
+
+COPY --from=building-stage /app/build /usr/src/app/templates/build
+
+
+
+
+

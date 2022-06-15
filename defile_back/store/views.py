@@ -54,6 +54,7 @@ class GetOrderToUser(APIView):
                 return JsonResponse(OrderSerializer(basket, context={'request': request}).data)
         else:
             session = request.GET.get('session_id')
+            print(session)
             baskets = Order.objects.filter(session_id=session, status='ожидает')
 
             if len(baskets) > 0:
@@ -88,7 +89,7 @@ class CreateOrderUnauthorizedUser(APIView):
             order = Order.objects.get(session_id=session_id, status='ожидает')
             user = None
             try:
-                user = CustomUser.objects.create_user(email, password,{
+                user = CustomUser.objects.create_user(email, password,**{
                     'phone':phone,
                     'fullname':fullname
                 })
