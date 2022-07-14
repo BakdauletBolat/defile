@@ -5,7 +5,7 @@ FROM node:16-alpine3.13 AS building-stage
 USER root
 RUN mkdir /app
 WORKDIR /app
-COPY package*.json ./
+COPY ./defile_front/package*.json ./
 RUN yarn install
 COPY ./defile_front .
 RUN yarn build
