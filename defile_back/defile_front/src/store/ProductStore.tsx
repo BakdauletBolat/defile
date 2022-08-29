@@ -48,6 +48,8 @@ export interface ICategory {
     name: String,
     photo: string,
     created_at: Date,
+    count: number,
+    products: IProduct[],
     subcategorires: ISubCategory[]
 }
 

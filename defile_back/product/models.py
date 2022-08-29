@@ -1,6 +1,7 @@
-from unicodedata import category
-from django.db import models
 
+from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 from users.models import CustomUser
 
 
@@ -85,7 +86,7 @@ class Size(models.Model):
 class Product(models.Model):
 
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = RichTextField(config_name='awesome_ckeditor')
     price = models.BigIntegerField()
     price_stock = models.BigIntegerField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
@@ -131,3 +132,18 @@ class ProductImage(models.Model):
     class Meta:
         verbose_name = 'Фотография продукта'
         verbose_name_plural = 'Фотографий продукта'
+
+    
+class Page(models.Model):
+
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    content = RichTextUploadingField(config_name='awesome_ckeditor')
+
+    def __str__(self):
+        return self.title
+
+class PagePhoto(models.Model):
+
+    photo = models.ImageField(upload_to='page_photos/')
+    page = models.ForeignKey(Page,on_delete=models.CASCADE,related_name='photos')

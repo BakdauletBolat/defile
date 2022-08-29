@@ -1,17 +1,32 @@
 import { observable, runInAction, configure, makeObservable, action, computed } from "mobx"
-import ApplicationService, { ISlide } from "../api/applications";
+import ApplicationService, { IPage, ISlide } from "../api/applications";
 configure({ enforceActions: "observed" });
 
 class ApplicationStore {
 
     slides:ISlide[] = []
+    page?: IPage 
     applicationService?:ApplicationService = undefined;
 
     constructor() {
         this.applicationService = new ApplicationService();
         makeObservable(this, {
-            slides: observable
+            slides: observable,
+            page: observable
         })
+    }
+
+    async loadPage(slug?:string) {
+        try {
+            this.applicationService?.getPage(slug).then(result=> {
+                runInAction(()=>{
+                    this.page = result.data
+                });
+            })
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
     async getSlides()  {

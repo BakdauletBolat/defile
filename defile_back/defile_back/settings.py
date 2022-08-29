@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'product',
-    'store'
+    'store',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'defile_back.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates',"DIRS",BASE_DIR / 'build'],
+        'DIRS': [BASE_DIR / 'templates',"DIRS", BASE_DIR / 'defile_front' / 'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,12 +133,15 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'templates' / 'build' / 'static'
+    
+    BASE_DIR / 'defile_front' / 'build' / 'static'
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 # Default primary key field type
@@ -172,4 +177,15 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+
+CKEDITOR_FILENAME_GENERATOR = 'defile_back.utils.get_filename'
+
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        
+        'toolbar': 'full',
+    },
 }

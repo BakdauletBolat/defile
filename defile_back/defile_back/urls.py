@@ -17,16 +17,21 @@ def subcategory_list(request, category):
     return JsonResponse({'data': [{'id': k.id, 'name': k.name} for k in subcategory]})
 
 def index(request):
-    return render(request,'build/index.html')
+    return render(request,'index.html')
 
 urlpatterns = [
-
     path('ajax/get_subcategory/<int:category>',subcategory_list),
     path('admin/', admin.site.urls),
+    re_path(r'ckeditor/', include('ckeditor_uploader.urls')),
+    
     path('api/',include('api.urls')),
-    re_path(r'.*', index)
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns.append(re_path(r'.*', index))
+
+

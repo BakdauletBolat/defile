@@ -1,14 +1,17 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import SwiperClass from "swiper/types/swiper-class";
-import { useStoreContext } from '../../../hooks/useContext';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { observer } from 'mobx-react-lite';
+
 import { useState } from 'react';
+
 import ProductItem from "../../../components/productItem";
+import { IProduct } from "../../../store/ProductStore";
 
+interface ProductsProps {
+    products: IProduct[]
+}
 
-function ProductList() {
-    const { product } = useStoreContext();
+function ProductList({products}:ProductsProps) {
 
     const [swiper, setSwiper] = useState<SwiperClass>();
 
@@ -24,10 +27,10 @@ function ProductList() {
                 onSwiper={(swiper) => setSwiper(swiper)}
                 breakpoints={{
                     1500: {
-                        slidesPerView: 3
+                        slidesPerView: 4
                     },
                     1300: {
-                        slidesPerView: 3
+                        slidesPerView: 4
                     },
                     1120: {
                         slidesPerView: 2
@@ -37,8 +40,8 @@ function ProductList() {
                     }
                 }}
             >
-                {product?.products.map(product => <SwiperSlide key={product.id}>
-                    <ProductItem productItem={product}></ProductItem>
+                {products.map(product => <SwiperSlide key={product.id}>
+                    <ProductItem key={product.id} productItem={product}></ProductItem>
                 </SwiperSlide>)
                 }
             </Swiper>
@@ -58,4 +61,4 @@ function ProductList() {
     );
 }
 
-export default observer(ProductList);
+export default ProductList;

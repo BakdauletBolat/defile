@@ -2,12 +2,23 @@ from unicodedata import category
 from django.contrib import admin
 
 from product.forms import ProductForm
-from .models import Product,Brand, ProductImage, Size, SubCategory,Type,Category
+from .models import Page, PagePhoto, Product,Brand, ProductImage, Size, SubCategory,Type,Category
 # Register your models here.
 
 from ajax_select.admin import AjaxSelectAdmin
 from ajax_select import make_ajax_form
-from ajax_select.fields import AutoCompleteSelectField, AutoCompleteSelectMultipleField
+
+
+class PagePhotoInlineAdmin(admin.TabularInline):
+
+    model = PagePhoto
+
+class PageAdmin(admin.ModelAdmin):
+
+    inlines = (PagePhotoInlineAdmin,)
+
+admin.site.register(PagePhoto)
+admin.site.register(Page,PageAdmin)
 
 class ProductImageTabularInline(admin.TabularInline):
 

@@ -61,7 +61,7 @@ function Main({ children }: MainProps) {
     useEffect(() => {
         product?.getCategories();
         product?.getProductFavorites(basket?.session_uuid);
-    });
+    },[]);
 
     return (
         <div>

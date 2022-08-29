@@ -20,6 +20,9 @@ class CategoryListApiView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+    def get_serializer(self, *args, **kwargs):
+        return CategorySerializer(context={'request':self.request})
+
 
 class TypeListApiView(ListAPIView):
 
