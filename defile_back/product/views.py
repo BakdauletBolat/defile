@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django_filters.rest_framework import DjangoFilterBackend
+from product.models import Page
+from product.serializers import PageSerializer
 from product.models import Brand, Category, Product, ProductFavorites, Type
 from rest_framework.views import APIView
 from product.serializers import BrandSerializer, CategorySerializer, ProductFavoritesSerializer, ProductSerializer, TypeSerializer
@@ -39,6 +41,13 @@ class ProductRetrieveAPIView(RetrieveAPIView):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class PageRetrieveAPIView(RetrieveAPIView):
+
+    lookup_field = 'slug'
+    queryset = Page.objects.all()
+    serializer_class = PageSerializer
 
 
 class AddToFavorites(APIView):

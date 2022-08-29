@@ -1,6 +1,5 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import SwiperClass from "swiper/types/swiper-class";
-import { EffectCreative } from 'swiper';
 import { useStoreContext } from '../../../hooks/useContext';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { ICategory } from "../../../store/ProductStore";
@@ -18,7 +17,7 @@ function CategoryItem({ category }: CategoryItemProps) {
         >
             <img className="category__item-img" src={category.photo} alt="" />
             <div className="category__item-title">{category.name}</div>
-            <div className="category__item-qty">38 889</div>
+            <div className="category__item-qty">{category.count}</div>
         </div>
     );
 }
@@ -54,7 +53,7 @@ function CategoryList() {
                 }}
             >
                 {product?.categories.map(category => <SwiperSlide onClick={() => navigate(`/category/${category.id}`)} key={category.id}>
-                    <CategoryItem category={category}></CategoryItem>
+                    <CategoryItem key={category.id} category={category}></CategoryItem>
                 </SwiperSlide>)
                 }
             </Swiper>

@@ -4,6 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import DetailProductPage from './pages/Detail';
+import DetailPage from './pages/PageDetail';
 import { useEffect } from 'react';
 import { useStoreContext } from './hooks/useContext';
 import BasketPage from './pages/Basket';
@@ -53,6 +54,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path="product">
           <Route path=":productId" element={<DetailProductPage />} />
+        </Route>
+        <Route path="page">
+          <Route path=":slug" element={<DetailPage />} />
         </Route>
         <Route path="subcategory">
           <Route path=":subCategoryId" element={<CategoryDetail />} />
