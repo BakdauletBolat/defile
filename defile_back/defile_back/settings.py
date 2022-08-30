@@ -133,7 +133,7 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    
+    BASE_DIR / 'templates' / 'build' / 'static',
     BASE_DIR / 'defile_front' / 'build' / 'static'
 ]
 
