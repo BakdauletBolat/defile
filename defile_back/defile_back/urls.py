@@ -17,7 +17,7 @@ def subcategory_list(request, category):
     return JsonResponse({'data': [{'id': k.id, 'name': k.name} for k in subcategory]})
 
 def index(request):
-    return render(request,'index.html')
+    return render(request,'build/index.html')
 
 urlpatterns = [
     path('ajax/get_subcategory/<int:category>',subcategory_list),
