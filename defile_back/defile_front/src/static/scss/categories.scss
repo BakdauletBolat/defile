@@ -5,7 +5,7 @@
         font-weight: bold;
         font-size: 32px;
 
-        @media screen and(max-width:550px) {
+        @media screen and (max-width:550px) {
             font-size: 24px;
         }
     }
@@ -21,7 +21,7 @@
             color: darken($blackColor, 1);
         }
 
-        @media screen and(max-width:550px) {
+        @media screen and (max-width:550px) {
             font-size: 14px;
             padding: 5px 12px;
         }
