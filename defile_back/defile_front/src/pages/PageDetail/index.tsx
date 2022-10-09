@@ -8,7 +8,7 @@ import { useStoreContext } from "../../hooks/useContext";
 import LoadingScreen from "../../components/loadingScreen";
 import { SwiperSlide, Swiper } from "swiper/react";
 import SwiperClass from "swiper/types/swiper-class";
-
+import parse from 'html-react-parser';
 
 function DetailPage() {
 
@@ -92,7 +92,7 @@ function DetailPage() {
                 <div className="detail-top__row container ">
                     <div className="detail-desc">
                         <div className="detail-product__name">{application?.page?.title}</div>
-                        <div className="detail-product__desc" dangerouslySetInnerHTML={{ __html: application!.page!.content! }} />
+                        <div className="detail-product__desc">{ parse(application!.page!.content!) }</div>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,7 @@ import AddToBasket from "./add-to-basket";
 import BottomFixedAddToBasket from "./bottom-fixed";
 import { Select } from 'antd';
 import LoadingScreen from "../../components/loadingScreen";
+import parse from 'html-react-parser';
 
 const { Option } = Select;
 
@@ -164,7 +165,7 @@ function DetailProductPage() {
                             </Select>
                         </div>
                         <div className="detail-product__about">О товаре</div>
-                        <div className="detail-product__desc">{product?.description}</div>
+                        <div className="detail-product__desc">  { product?.description ? parse( product?.description!.toString()!): '' }</div>
                         <div className="detail-product__pricecontainer">
                             {product?.is_stock ? <div className="detail-product__prices">
                                 <div className="detail-product__price">₸ {product?.price}</div>
