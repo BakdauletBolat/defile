@@ -6,7 +6,7 @@ USER root
 RUN mkdir /app
 WORKDIR /app
 COPY ./defile_front/package*.json ./
-RUN yarn install
+RUN npm install --legacy-peer-deps
 COPY ./defile_front .
 RUN yarn build
 

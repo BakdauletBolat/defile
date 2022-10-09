@@ -162,7 +162,7 @@ function Main({ children }: MainProps) {
                                 }}  />
             
                                 <SizedBox width={10}></SizedBox>
-                                <div className="footer__item-desc">groceyish@contact.com</div>
+                                <div className="footer__item-desc">defilelux@mail.ru</div>
                             </Row>
                             <SizedBox height={20}></SizedBox>
                             <Row alignItems="center">
@@ -172,7 +172,7 @@ function Main({ children }: MainProps) {
                                 }} />
                           
                                 <SizedBox width={10}></SizedBox>
-                                <div className="footer__item-desc">8:00 - 20:00, Пон -  Суб</div>
+                                <div className="footer__item-desc">с 10:00 до 20:00, без выходных</div>
                             </Row>
                         </div>
                         <div>
@@ -208,7 +208,7 @@ function Main({ children }: MainProps) {
                     <div className="footer__bottom">
                         <div className="footer__copyright">© 2022, Все права защищены</div>
                         <div>
-                            <InstagramOutlined className="footer__icon" />
+                           <a href="https://instagram.com/defile.kz?igshid=ZjA0NjI3M2I="><InstagramOutlined  className="footer__icon" /></a> 
                             <FacebookOutlined className="footer__icon" />
                             <YoutubeOutlined className="footer__icon" />
                             <TwitterOutlined className="footer__icon" />

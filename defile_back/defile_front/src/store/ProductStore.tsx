@@ -30,8 +30,8 @@ export interface ISize {
 
 export interface IProduct {
     id: number,
-    name: String,
-    description: String,
+    name: string,
+    description: string,
     subcategory: ISubCategory,
     category: ICategory,
     is_stock: boolean,
@@ -202,7 +202,7 @@ class ProductStore {
             {
                 title: <div className="antd-main-tree-title"><PercentageOutlined style={{
                     color: '#FF0303'
-                }}/> Акций</div>,
+                }}/> Акции</div>,
                 key: 'is_stock',
                 id: 0,
                 type:'brand',  
@@ -210,7 +210,7 @@ class ProductStore {
             {
                 title: <div className="antd-main-tree-title"><StarOutlined style={{
                     color: '#FF0303'
-                }}/> Новые кродажи</div>,
+                }}/> Новые продажи</div>,
                 key: 'is_new',
                 id: 0,
                 type:'brand',  
