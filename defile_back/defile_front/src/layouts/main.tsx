@@ -38,7 +38,7 @@ const pages = [
         icon: <FireOutlined></FireOutlined>
     },
     {
-        title: 'Акций',
+        title: 'Акции',
         url: '/is_stock',
         icon: <PercentageOutlined></PercentageOutlined>
     },
@@ -134,7 +134,7 @@ function Main({ children }: MainProps) {
                             </Row>
                             <SizedBox height={20}></SizedBox>
                             <Row alignItems="center">
-                            <Link to='/is_stock' className="footer__item-desc">Акций</Link>
+                            <Link to='/is_stock' className="footer__item-desc">Акции</Link>
                             </Row>
                             <SizedBox height={20}></SizedBox>
                             <Row alignItems="center">

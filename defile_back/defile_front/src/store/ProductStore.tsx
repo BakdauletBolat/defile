@@ -258,7 +258,7 @@ class ProductStore {
             key:'categories',
             title: <div className="antd-main-tree-title"><MenuUnfoldOutlined style={{
                 color: '#FF0303'
-            }}/>  Категорий</div>,
+            }}/>  Категории</div>,
             children: []
         }];
 
