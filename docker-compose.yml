@@ -25,6 +25,7 @@ services:
       - static_volume:/usr/src/app/staticfiles
       - media_volume:/usr/src/app/media
       - ./nginx-back/.well-known/pki-validation:/usr/src/files
+      - ./nginx-back/cert:/etc/ssl
     ports:
       - 80:80
       - 443:443
