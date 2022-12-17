@@ -183,6 +183,8 @@ SIMPLE_JWT = {
 
 CKEDITOR_FILENAME_GENERATOR = 'defile_back.utils.get_filename'
 
+CSRF_TRUSTED_ORIGINS = ['https://defile.kz']
+
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
         
