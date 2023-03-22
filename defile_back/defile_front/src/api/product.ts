@@ -33,7 +33,9 @@ export default class ProductService {
          route += `&is_new=${is_new}`;
       }
       console.log(route);
-      return await $host.get<IProduct[]>(route);
+      return await $host.get<{
+         results: IProduct[]
+      }>(route);
    }
 
    async getProductById(id: number) {

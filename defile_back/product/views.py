@@ -5,46 +5,49 @@ from product.models import Page
 from product.serializers import PageSerializer
 from product.models import Brand, Category, Product, ProductFavorites, Type
 from rest_framework.views import APIView
-from product.serializers import BrandSerializer, CategorySerializer, ProductFavoritesSerializer, ProductSerializer, TypeSerializer
+from product.serializers import BrandSerializer, CategorySerializer, ProductFavoritesSerializer, ProductSerializer, \
+    TypeSerializer
 from rest_framework.response import Response
 from rest_framework import status
 import json
+from rest_framework.pagination import PageNumberPagination
 
 
 class BrandListApiView(ListAPIView):
-
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
 
 class CategoryListApiView(ListAPIView):
-
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class TypeListApiView(ListAPIView):
-
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
 
 
-class ProductListApiView(ListAPIView):
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
+class ProductListApiView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['subcategory', 'category','brand','is_new','is_stock','is_hot']
+    pagination_class = StandardResultsSetPagination
+
+    filterset_fields = ['subcategory', 'category', 'brand', 'is_new', 'is_stock', 'is_hot']
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):
-
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
 class PageRetrieveAPIView(RetrieveAPIView):
-
     lookup_field = 'slug'
     queryset = Page.objects.all()
     serializer_class = PageSerializer
@@ -83,7 +86,7 @@ class AddToFavorites(APIView):
 
                 return Response(productFavorite, status=status.HTTP_200_OK)
         else:
-           
+
             try:
                 product_id = post.get('product_id')
                 session_id = post.get('session_id')
@@ -122,17 +125,17 @@ class ProductFavoritesListAPIView(APIView):
             for favorite in request.user.likes.filter(is_liked=True):
                 print(favorite)
                 likesDict.append(favorite.product)
-            likes = ProductSerializer(likesDict, many=True,context={'request': request}).data
+            likes = ProductSerializer(likesDict, many=True, context={'request': request}).data
             return Response(likes, status=status.HTTP_200_OK)
         else:
             try:
                 session_id = request.GET.get('session_id')
                 likesDict = []
                 for favorite in ProductFavorites.objects.filter(
-                    session_id=session_id, is_liked=True):
+                        session_id=session_id, is_liked=True):
                     print(favorite)
                     likesDict.append(favorite.product)
-                likes = ProductSerializer(likesDict, many=True,context={'request': request}).data
+                likes = ProductSerializer(likesDict, many=True, context={'request': request}).data
                 return Response(likes, status=status.HTTP_200_OK)
 
             except Exception as e:

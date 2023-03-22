@@ -4,8 +4,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
 SECRET_KEY = os.environ.get("SECRET_KEY", default='asdasfsg')
 
 DEBUG = os.environ.get('DEBUG', default=1)
@@ -14,8 +12,6 @@ DEBUG = os.environ.get('DEBUG', default=1)
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 
 ALLOWED_HOSTS = ['*']
-
-
 
 # Application definition
 
@@ -41,7 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,7 +52,7 @@ ROOT_URLCONF = 'defile_back.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates',"DIRS", BASE_DIR / 'defile_front' / 'build'],
+        'DIRS': [BASE_DIR / 'templates', "DIRS", BASE_DIR / 'defile_front' / 'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,16 +67,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'defile_back.wsgi.application'
 
-
-CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_ALL_ORIGINS = True
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "flatly",
 }
 
 GRAPPELLI_ADMIN_TITLE = 'Defile Admin'
-
-
 
 DATABASES = {
     "default": {
@@ -92,7 +85,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -112,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -123,7 +114,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -140,23 +130,21 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
-
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -179,15 +167,13 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-
-
 CKEDITOR_FILENAME_GENERATOR = 'defile_back.utils.get_filename'
 
 CSRF_TRUSTED_ORIGINS = ['https://defile.kz']
 
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
-        
+
         'toolbar': 'full',
     },
 }
