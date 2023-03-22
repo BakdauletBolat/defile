@@ -127,7 +127,7 @@ class ProductStore {
         })
         const apiData = await this.productsService.getProducts({});
         runInAction(() => {
-            this.setProducts(apiData.data);
+            this.setProducts(apiData.data.results);
             this.isLoadingProducts = false;
         });
     };
@@ -149,7 +149,7 @@ class ProductStore {
         })
         const apiData = await this.productsService.getProducts({ brand: id });
         runInAction(() => {
-            this.filteredProducts = apiData.data;
+            this.filteredProducts = apiData.data.results;
             this.isLoadingFiltered = false;
         });
     };
@@ -160,7 +160,7 @@ class ProductStore {
         })
         const apiData = await this.productsService.getProducts({ subcategory: id });
         runInAction(() => {
-            this.filteredProducts = apiData.data;
+            this.filteredProducts = apiData.data.results;
             this.isLoadingFiltered = false;
         });
     }
@@ -173,7 +173,7 @@ class ProductStore {
         })
         const apiData = await this.productsService.getProducts({ category: id });
         runInAction(() => {
-            this.filteredProducts = apiData.data;
+            this.filteredProducts = apiData.data.results;
             this.isLoadingFiltered = false;
         });
     }
@@ -184,7 +184,7 @@ class ProductStore {
         })
         const apiData = await this.productsService.getProducts({ is_hot,is_new,is_stock });
         runInAction(() => {
-            this.filteredProducts = apiData.data;
+            this.filteredProducts = apiData.data.results;
             this.isLoadingFiltered = false;
         });
     }

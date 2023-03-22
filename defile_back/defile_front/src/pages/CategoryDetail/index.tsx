@@ -81,7 +81,7 @@ function CategoryDetail() {
 
     useEffect(() => {
         product?.getBrands();
-        product?.getCategories();
+        // product?.getCategories();
         if (categoryId !== undefined) {
             setTreeDefaultKey(categoryId);
             product?.getCategoryProducts(parseInt(categoryId!));
